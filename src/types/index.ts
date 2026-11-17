@@ -31,12 +31,13 @@ export interface Luchador {
   peleas: Pelea[];
   createdAt: string;
   updatedAt: string;
+  creadoPor?: string;
 }
 
 /** Lo que enviamos al crear/editar: sin _id ni fechas automáticas */
 export type LuchadorInput = Omit<
   Luchador,
-  '_id' | 'createdAt' | 'updatedAt' | 'peleas'
+  '_id' | 'createdAt' | 'updatedAt' | 'peleas'| 'creadoPor'
 >;
 
 /** Lo que enviamos al crear/editar una pelea */
@@ -52,4 +53,18 @@ export interface Usuario {
 export interface LoginResponse {
   token: string;
   usuario: Usuario;
+}
+
+export interface MetaPaginacion {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+  hasPrev: boolean;
+  hasNext: boolean;
+}
+
+export interface RespuestaListado<T> {
+  meta: MetaPaginacion;
+  data: T[];
 }
